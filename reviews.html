@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kansō Table premium static restaurant demonstration built with HTML, CSS and vanilla JavaScript.">
+  <title>Reviews · Kansō Table</title>
+  <link rel="icon" href="assets/images/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script defer src="js/config.js"></script>
+  <script defer src="js/data/menu-data.js"></script>
+  <script defer src="js/data/reviews-data.js"></script>
+  <script defer src="js/data/offers-data.js"></script>
+  <script defer src="js/utils/storage.js"></script>
+  <script defer src="js/utils/formatting.js"></script>
+  <script defer src="js/utils/validation.js"></script>
+  <script defer src="js/utils/notifications.js"></script>
+  <script defer src="js/modules/theme.js"></script>
+  <script defer src="js/modules/navigation.js"></script>
+  <script defer src="js/modules/favorites.js"></script>
+  <script defer src="js/modules/cart.js"></script>
+  <script defer src="js/modules/menu.js"></script>
+  <script defer src="js/modules/orders.js"></script>
+  <script defer src="js/modules/checkout.js"></script>
+  <script defer src="js/modules/reservations.js"></script>
+  <script defer src="js/modules/reviews.js"></script>
+  <script defer src="js/modules/profile.js"></script>
+  <script defer src="js/modules/admin.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="reviews">
+<main id="main">
+<section class="page-hero"><div class="container"><div class="section-kicker">Guest book</div><h1>Reviews, clearly labelled.</h1><p>Seed reviews are sample content. New reviews are saved locally and are not verified customer testimonials.</p></div></section><section class="section"><div class="container grid grid-2"><form class="card review-form form-grid" data-review-form><h3>Write a local demo review</h3><div class="field"><label>Display name</label><input name="name" required></div><div><label style="font-weight:800">Rating</label><div class="review-stars" aria-label="Choose rating"><button type="button" class="star-btn is-active" data-star="1" aria-label="1 stars">★</button><button type="button" class="star-btn is-active" data-star="2" aria-label="2 stars">★</button><button type="button" class="star-btn is-active" data-star="3" aria-label="3 stars">★</button><button type="button" class="star-btn is-active" data-star="4" aria-label="4 stars">★</button><button type="button" class="star-btn is-active" data-star="5" aria-label="5 stars">★</button></div></div><div class="field"><label>Feedback</label><textarea name="review" required minlength="10"></textarea></div><button class="btn btn--primary">Save local review</button></form><div><div class="toolbar"><select data-review-filter><option value="all">All ratings</option><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select><select data-review-sort><option value="newest">Newest</option><option value="highest">Highest rating</option></select></div><div class="stack" data-review-list></div></div></div></section></main>
+</body>
+</html>
