@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kansō Table premium static restaurant demonstration built with HTML, CSS and vanilla JavaScript.">
+  <title>Cart · Kansō Table</title>
+  <link rel="icon" href="assets/images/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script defer src="js/config.js"></script>
+  <script defer src="js/data/menu-data.js"></script>
+  <script defer src="js/data/reviews-data.js"></script>
+  <script defer src="js/data/offers-data.js"></script>
+  <script defer src="js/utils/storage.js"></script>
+  <script defer src="js/utils/formatting.js"></script>
+  <script defer src="js/utils/validation.js"></script>
+  <script defer src="js/utils/notifications.js"></script>
+  <script defer src="js/modules/theme.js"></script>
+  <script defer src="js/modules/navigation.js"></script>
+  <script defer src="js/modules/favorites.js"></script>
+  <script defer src="js/modules/cart.js"></script>
+  <script defer src="js/modules/menu.js"></script>
+  <script defer src="js/modules/orders.js"></script>
+  <script defer src="js/modules/checkout.js"></script>
+  <script defer src="js/modules/reservations.js"></script>
+  <script defer src="js/modules/reviews.js"></script>
+  <script defer src="js/modules/profile.js"></script>
+  <script defer src="js/modules/admin.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="cart">
+<main id="main">
+<section class="page-hero"><div class="container"><div class="section-kicker">Local basket</div><h1>Your cart.</h1><p>Persistent in this browser only. Prices, discounts and tax are calculated from centralized configuration.</p></div></section><section class="section"><div class="container cart-layout"><div class="card" data-cart-items></div><aside class="card summary-card sticky-card"><h3>Order summary</h3><div class="stack"><div class="summary-row"><span>Subtotal</span><strong data-subtotal>₹0</strong></div><div class="summary-row"><span>Discount</span><span data-discount>₹0</span></div><div class="summary-row"><span>Tax</span><span data-tax>₹0</span></div><div class="summary-row total"><span>Total</span><span data-total>₹0</span></div><div class="field"><label>Coupon</label><div class="cluster" style="flex-wrap:nowrap"><input data-coupon-input placeholder="WELCOME10"><button class="btn btn--ghost" type="button" data-apply-coupon>Apply</button></div></div><div class="field"><label>Cooking instructions</label><textarea data-cart-instructions maxlength="300" placeholder="Demo instructions only"></textarea></div><a class="btn btn--primary" href="checkout.html" data-checkout-link>Checkout demo</a><button class="btn btn--ghost" data-clear-cart>Clear cart</button><small>No real payment is collected.</small></div></aside></div></section></main>
+</body>
+</html>
