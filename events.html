@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kansō Table premium static restaurant demonstration built with HTML, CSS and vanilla JavaScript.">
+  <title>Events & Catering · Kansō Table</title>
+  <link rel="icon" href="assets/images/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script defer src="js/config.js"></script>
+  <script defer src="js/data/menu-data.js"></script>
+  <script defer src="js/data/reviews-data.js"></script>
+  <script defer src="js/data/offers-data.js"></script>
+  <script defer src="js/utils/storage.js"></script>
+  <script defer src="js/utils/formatting.js"></script>
+  <script defer src="js/utils/validation.js"></script>
+  <script defer src="js/utils/notifications.js"></script>
+  <script defer src="js/modules/theme.js"></script>
+  <script defer src="js/modules/navigation.js"></script>
+  <script defer src="js/modules/favorites.js"></script>
+  <script defer src="js/modules/cart.js"></script>
+  <script defer src="js/modules/menu.js"></script>
+  <script defer src="js/modules/orders.js"></script>
+  <script defer src="js/modules/checkout.js"></script>
+  <script defer src="js/modules/reservations.js"></script>
+  <script defer src="js/modules/reviews.js"></script>
+  <script defer src="js/modules/profile.js"></script>
+  <script defer src="js/modules/admin.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="static">
+<main id="main">
+<section class="page-hero"><div class="container"><div class="section-kicker">Gatherings</div><h1>Private dining, birthdays, quiet launches.</h1><p>Event packages below are sample offerings for the front-end demonstration.</p></div></section><section class="section"><div class="container grid grid-3"><div class="card card__body"><h3>Private dining</h3><p class="muted">8–16 guests · curated set menu · sample package.</p></div><div class="card card__body"><h3>Celebration table</h3><p class="muted">Birthday or anniversary styling · sample package.</p></div><div class="card card__body"><h3>Studio supper</h3><p class="muted">Small brand and creative-team dinners · sample package.</p></div></div></section><section class="section" style="background:var(--surface)"><div class="container"><form class="card contact-card form-grid" data-local-form style="max-width:720px;margin:auto"><h2 style="font-size:2rem">Event enquiry demo</h2><div class="form-grid cols-2"><div class="field"><label>Name *</label><input required><span class="field-error"></span></div><div class="field"><label>Email *</label><input type="email" required><span class="field-error"></span></div><div class="field"><label>Guest count *</label><input type="number" min="2" required><span class="field-error"></span></div><div class="field"><label>Preferred date *</label><input type="date" required><span class="field-error"></span></div></div><div class="field"><label>Event notes *</label><textarea required></textarea><span class="field-error"></span></div><button class="btn btn--primary">Save local enquiry</button><small>No enquiry is sent outside this browser.</small></form></div></section></main>
+</body>
+</html>
