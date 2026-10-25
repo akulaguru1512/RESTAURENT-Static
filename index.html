@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kansō Table premium static restaurant demonstration built with HTML, CSS and vanilla JavaScript.">
+  <title>Home · Kansō Table</title>
+  <link rel="icon" href="assets/images/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script defer src="js/config.js"></script>
+  <script defer src="js/data/menu-data.js"></script>
+  <script defer src="js/data/reviews-data.js"></script>
+  <script defer src="js/data/offers-data.js"></script>
+  <script defer src="js/utils/storage.js"></script>
+  <script defer src="js/utils/formatting.js"></script>
+  <script defer src="js/utils/validation.js"></script>
+  <script defer src="js/utils/notifications.js"></script>
+  <script defer src="js/modules/theme.js"></script>
+  <script defer src="js/modules/navigation.js"></script>
+  <script defer src="js/modules/favorites.js"></script>
+  <script defer src="js/modules/cart.js"></script>
+  <script defer src="js/modules/menu.js"></script>
+  <script defer src="js/modules/orders.js"></script>
+  <script defer src="js/modules/checkout.js"></script>
+  <script defer src="js/modules/reservations.js"></script>
+  <script defer src="js/modules/reviews.js"></script>
+  <script defer src="js/modules/profile.js"></script>
+  <script defer src="js/modules/admin.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="home">
+<main id="main">
+<section class="hero"><div class="container hero__content"><div class="section-kicker">Hyderabad · Contemporary dining</div><h1>Quiet craft.<br>Bold memory.</h1><p>Kansō Table pairs Indian regional warmth with Japanese-inspired restraint—seasonal plates, thoughtful service, and a dining room designed to slow the evening down.</p><div class="hero-actions"><a class="btn btn--primary" href="menu.html">Explore menu</a><a class="btn btn--ghost" href="reservations.html">Reserve a table</a><a class="btn btn--ghost" href="login.html">Login / Create profile</a></div></div></section>
+<div class="container account-entry"><div><span class="section-kicker">Demo account</span><strong>Save favorites, profile preferences and local activity in this browser.</strong></div><a class="btn btn--primary" href="login.html">Open login page</a></div>
+<div class="container editorial-strip"><div><span>Lunch</span><strong>12:00–15:30</strong></div><div><span>Dinner</span><strong>18:30–22:30</strong></div><div><span>Local demo</span><strong>No backend or real payments</strong></div></div>
+<section class="section"><div class="container"><div class="section-heading"><div class="section-kicker">Selected plates</div><h2>House favourites</h2><p>Dynamic menu cards are rendered from one editable JavaScript dataset.</p></div><div class="grid grid-4" data-featured></div></div></section>
+<section class="section" style="background:var(--surface)"><div class="container story-panel"><img src="https://images.unsplash.com/photo-1516211697506-8360dbcfe9a4?auto=format&fit=crop&w=900&q=80" alt="Chef plating a dish" loading="lazy" onerror="this.src='assets/images/fallback-space.svg'"><div><div class="section-kicker">Our philosophy</div><h2>Less noise. More intention.</h2><p class="quote">“A plate should feel edited, not decorated.”</p><p class="muted">Our fictional chef team explores smoke, fermentation, coastal spice, seasonal vegetables and comforting grains. The identity is editorial, warm and deliberately restrained.</p><a class="btn btn--ghost" href="about.html">Read our story</a></div></div></section>
+<section class="section"><div class="container"><div class="section-heading"><div class="section-kicker">Chef’s desk</div><h2>Specials worth lingering over</h2></div><div class="grid grid-3" data-specials></div></div></section>
+<section class="section" style="background:var(--surface)"><div class="container"><div class="section-heading"><div class="section-kicker">Cuisines</div><h2>Regional roots, global techniques</h2></div><div class="grid grid-4"><a class="card card__body" href="menu.html?cuisine=Andhra"><h3>Andhra</h3><p class="muted">Tamarind, chilli, curry leaf and coastal depth.</p></a><a class="card card__body" href="menu.html?cuisine=Japanese"><h3>Japanese</h3><p class="muted">Miso, dashi, tea, citrus and clean umami.</p></a><a class="card card__body" href="menu.html?cuisine=South%20Indian"><h3>South Indian</h3><p class="muted">Coconut, pepper, millet and tempered spice.</p></a><a class="card card__body" href="cuisines.html"><h3>Explore all</h3><p class="muted">Eight configurable cuisine families.</p></a></div></div></section>
+<section class="section"><div class="container"><div class="section-heading"><div class="section-kicker">Local taste profile</div><h2>Recommended from your browsing</h2><p>Recommendations use only favorites and recently viewed sample dishes in this browser—no AI service is claimed.</p></div><div class="grid grid-4" data-recommendations></div></div></section>
+<section class="section" style="background:var(--charcoal);color:var(--bg)"><div class="container grid grid-3"><div><div class="section-kicker" style="color:var(--beige)">Today’s demo offer</div><h2>WELCOME10</h2><p>10% off eligible local demo orders above ₹600, capped at ₹250.</p><a class="btn btn--primary" href="menu.html">Build an order</a></div><div><h3>Opening hours</h3><p>Mon–Thu · 12:00–22:30<br>Fri–Sun · 12:00–23:00<br>Holiday schedules are configurable in the static content.</p></div><div><h3>Find us</h3><p>Jubilee Hills, Hyderabad<br>+91 90000 12345<br>hello@kansotable.demo</p><a class="btn btn--ghost" href="contact.html">Contact & map</a></div></div></section>
+<section class="section"><div class="container grid grid-2"><div><div class="section-kicker">Guest notes</div><h2>Sample testimonials</h2><p class="quote">“Inventive without feeling complicated.”</p><p class="muted">Sample content for presentation purposes; not verified customer feedback.</p><a class="btn btn--ghost" href="reviews.html">Browse demo reviews</a></div><div class="card card__body"><h3>Dining notes</h3><form data-local-form class="form-grid"><div class="field"><label for="newsEmail">Email for demo newsletter</label><input id="newsEmail" type="email" required placeholder="you@example.com"><span class="field-error"></span></div><button class="btn btn--primary">Save locally</button><small>No email is actually sent or subscribed.</small></form></div></div></section>
+</main>
+</body>
+</html>
