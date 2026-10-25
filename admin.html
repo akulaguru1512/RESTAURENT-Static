@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kansō Table premium static restaurant demonstration built with HTML, CSS and vanilla JavaScript.">
+  <title>Demo Admin · Kansō Table</title>
+  <link rel="icon" href="assets/images/logo-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script defer src="js/config.js"></script>
+  <script defer src="js/data/menu-data.js"></script>
+  <script defer src="js/data/reviews-data.js"></script>
+  <script defer src="js/data/offers-data.js"></script>
+  <script defer src="js/utils/storage.js"></script>
+  <script defer src="js/utils/formatting.js"></script>
+  <script defer src="js/utils/validation.js"></script>
+  <script defer src="js/utils/notifications.js"></script>
+  <script defer src="js/modules/theme.js"></script>
+  <script defer src="js/modules/navigation.js"></script>
+  <script defer src="js/modules/favorites.js"></script>
+  <script defer src="js/modules/cart.js"></script>
+  <script defer src="js/modules/menu.js"></script>
+  <script defer src="js/modules/orders.js"></script>
+  <script defer src="js/modules/checkout.js"></script>
+  <script defer src="js/modules/reservations.js"></script>
+  <script defer src="js/modules/reviews.js"></script>
+  <script defer src="js/modules/profile.js"></script>
+  <script defer src="js/modules/admin.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body data-page="admin">
+<main id="main">
+<section class="page-hero"><div class="container"><div class="section-kicker">Optional module</div><h1>Demonstration admin.</h1><p>This page is not secure, has no authorization, and does not manage a real restaurant. Changes are local browser overrides only.</p></div></section><section class="section"><div class="container"><div class="admin-grid"><div class="card stat-card"><small>Demo sales</small><strong data-admin-sales>₹0</strong></div><div class="card stat-card"><small>Demo orders</small><strong data-admin-orders>0</strong></div><div class="card stat-card"><small>Reservations</small><strong data-admin-reservations>0</strong></div><div class="card stat-card"><small>Average review</small><strong data-admin-rating>0</strong></div></div><div class="grid grid-2" style="margin-top:2rem"><div class="card card__body"><h3>Sample sales pulse</h3><div class="chart-bars" aria-label="Sample weekly sales bar chart"><span style="height:45%" data-label="M"></span><span style="height:62%" data-label="T"></span><span style="height:54%" data-label="W"></span><span style="height:78%" data-label="T"></span><span style="height:95%" data-label="F"></span><span style="height:88%" data-label="S"></span><span style="height:70%" data-label="S"></span></div></div><form class="card card__body form-grid" data-admin-add><h3>Add local menu item</h3><div class="field"><label>Name</label><input name="name" required></div><div class="field"><label>Description</label><input name="description"></div><div class="field"><label>Price ₹</label><input name="price" type="number" min="0" required></div><div class="field"><label>Category</label><select name="category"><option>Starters</option><option>Main Course</option><option>Rice & Noodles</option><option>Desserts</option><option>Beverages</option><option>Combos</option><option>Chef's Specials</option></select></div><div class="field"><label>Cuisine</label><select name="cuisine"><option>Andhra</option><option>South Indian</option><option>North Indian</option><option>Japanese</option><option>Chinese</option><option>Italian</option><option>Continental</option><option>Other</option></select></div><div class="field"><label>Dietary</label><select name="dietary"><option>Vegetarian</option><option>Vegan</option><option>Egg</option><option>Non-Vegetarian</option></select></div><button class="btn btn--primary">Add local item</button></form></div><h2 style="font-size:2rem;margin-top:2rem">Local order status simulator</h2><div data-admin-orders-list></div><h2 style="font-size:2rem;margin-top:2rem">Local menu manager</h2><div data-admin-menu></div></div></section></main>
+</body>
+</html>
