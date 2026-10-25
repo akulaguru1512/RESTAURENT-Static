@@ -1,0 +1,21 @@
+window.NavigationModule = (()=>{
+  const pages=[['index.html','Home'],['menu.html','Menu'],['cuisines.html','Cuisines'],['about.html','About'],['reservations.html','Reservations'],['reviews.html','Reviews'],['contact.html','Contact']];
+  function header(){
+    const current=location.pathname.split('/').pop()||'index.html';
+    const profile=StorageUtil.get('profile',{});
+    const signedIn=Boolean(profile&&profile.signedIn);
+    const accountHref=signedIn?'profile.html':'login.html';
+    const accountLabel=signedIn?'Profile':'Login';
+    return `<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container nav"><a class="brand" href="index.html" aria-label="Kansō Table home"><span class="brand__mark">間</span><span>Kansō Table</span></a><nav class="nav__links" aria-label="Primary">${pages.map(([href,label])=>`<a href="${href}" ${current===href?'aria-current="page"':''} data-nav-label="${label.toLowerCase()}">${label}</a>`).join('')}</nav><div class="nav__actions"><label class="sr-only" for="languageSelect">Language</label><select id="languageSelect" data-language aria-label="Language" style="max-width:92px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.55rem"><option value="en">EN</option><option value="hi">हि</option><option value="te">తె</option></select><button class="icon-btn" data-theme-toggle aria-label="Switch theme">◐</button><a class="btn btn--ghost btn--small account-nav-link" href="${accountHref}" aria-label="${accountLabel}">${accountLabel}</a><a class="icon-btn" href="cart.html" aria-label="Cart">⌑<span class="cart-count" data-cart-count>0</span></a><button class="icon-btn mobile-toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">☰</button></div></div></header><div class="mobile-panel" data-mobile-panel>${pages.map(([href,label])=>`<a href="${href}" data-nav-label="${label.toLowerCase()}">${label}</a>`).join('')}<a href="cart.html" data-nav-label="cart">Cart</a><a href="${accountHref}" data-nav-label="${signedIn?'profile':'login'}">${accountLabel}</a></div>`;
+  }
+  function footer(){
+    return `<footer class="site-footer"><div class="container"><div class="footer-grid"><div><a class="brand" href="index.html"><span class="brand__mark">間</span><span>Kansō Table</span></a><p class="muted" style="max-width:420px;margin-top:1rem">A static demonstration restaurant experience. Orders, reservations, rewards, reviews and account actions remain only in this browser.</p></div><div><h4>Discover</h4><div class="footer-links"><a href="menu.html">Menu</a><a href="cuisines.html">Cuisines</a><a href="gallery.html">Gallery</a><a href="about.html">Our story</a></div></div><div><h4>Visit</h4><div class="footer-links"><a href="reservations.html">Reservations</a><a href="events.html">Events & catering</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div></div><div><h4>Policies</h4><div class="footer-links"><a href="policies.html">Privacy & terms</a><a href="login.html">Login / account</a><a href="orders.html">Demo orders</a><a href="admin.html">Demo admin</a><button class="btn btn--ghost btn--small" data-reset-demo>Reset demo data</button></div></div></div><div class="footer-bottom"><span>© <span data-year></span> Kansō Table.</span><span>Static HTML/CSS/JavaScript demonstration.</span></div></div></footer>`;
+  }
+  function init(){
+    document.body.insertAdjacentHTML('afterbegin',header());document.body.insertAdjacentHTML('beforeend',footer());document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());
+    document.addEventListener('click',async e=>{const toggle=e.target.closest('[data-mobile-toggle]');if(toggle){const panel=document.querySelector('[data-mobile-panel]');const open=panel.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(open));}
+      if(e.target.closest('[data-reset-demo]')){if(await Notify.confirmDialog({title:'Reset local demo data?',message:'This clears cart, favorites, orders, reservations, reviews, profile preferences and admin changes stored in this browser.',confirmText:'Reset',danger:true})){StorageUtil.clearDemo();Notify.toast('Demo data reset. Reloading…','success');setTimeout(()=>location.reload(),500);}}
+    });
+  }
+  return {init};
+})();

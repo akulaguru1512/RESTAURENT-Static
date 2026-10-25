@@ -1,0 +1,3 @@
+@media(max-width:759px){.section{padding:3.6rem 0}.hero{min-height:78vh}.hero__content{padding:5rem 0 3.5rem}.page-hero{padding-top:3rem}.cart-item{grid-template-columns:70px 1fr}.cart-item img{width:70px;height:70px}.modal-food{grid-template-columns:1fr}.desktop-only{display:none!important}}
+@media(min-width:760px){.form-grid.cols-2{grid-template-columns:repeat(2,1fr)}.modal-food{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
