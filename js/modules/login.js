@@ -1,448 +1,754 @@
-const form = document.getElementById("accountForm");
-const formTitle = document.getElementById("formTitle");
-const formSubtitle = document.getElementById("formSubtitle");
+document.addEventListener("DOMContentLoaded", () => {
 
-const username = document.getElementById("username");
-const email = document.getElementById("email");
-const emailBox = document.getElementById("emailBox");
+    /* =========================================
+       GET ELEMENTS
+    ========================================= */
 
-const password = document.getElementById("password");
-const confirmPassword = document.getElementById("confirmPassword");
-const confirmBox = document.getElementById("confirmBox");
+    const form =
+        document.getElementById("accountForm");
 
-const togglePassword = document.getElementById("togglePassword");
-
-const loginOptions = document.getElementById("loginOptions");
-
-const submitBtn = document.getElementById("submitBtn");
-
-const switchText = document.getElementById("switchText");
-const switchLink = document.getElementById("switchLink");
-
-const message = document.getElementById("message");
-
-const authCard = document.getElementById("authCard");
-
-let isSignUp = false;
-let isSwitchingForm = false;
+    const authCard =
+        document.getElementById("authCard");
 
 
-/* =========================
-   MESSAGE FUNCTION
-========================= */
+    const formTitle =
+        document.getElementById("formTitle");
 
-function setMessage(text, type = "error") {
-    message.textContent = text;
-
-    if (type === "success") {
-        message.style.color = "#496c4f";
-    } else {
-        message.style.color = "#8e252e";
-    }
-}
+    const formSubtitle =
+        document.getElementById("formSubtitle");
 
 
-/* =========================
-   CHANGE LOGIN / SIGNUP MODE
-========================= */
+    const username =
+        document.getElementById("username");
 
-function updateFormMode() {
+    const email =
+        document.getElementById("email");
 
-    isSignUp = !isSignUp;
-
-    formTitle.textContent = isSignUp
-        ? "Create your profile."
-        : "Welcome back.";
-
-    formSubtitle.textContent = isSignUp
-        ? "Create a local Kansō Table profile for this browser."
-        : "Sign in to continue to your Kansō Table profile.";
+    const emailBox =
+        document.getElementById("emailBox");
 
 
-    /* Show email only for signup */
+    const password =
+        document.getElementById("password");
 
-    emailBox.hidden = !isSignUp;
-    email.required = isSignUp;
+    const confirmPassword =
+        document.getElementById("confirmPassword");
 
-
-    /* Show confirm password only for signup */
-
-    confirmBox.hidden = !isSignUp;
-    confirmPassword.required = isSignUp;
+    const confirmBox =
+        document.getElementById("confirmBox");
 
 
-    /* Hide remember + forgot password in signup */
-
-    loginOptions.hidden = isSignUp;
-
-
-    /* Change button text */
-
-    submitBtn.textContent = isSignUp
-        ? "CREATE PROFILE"
-        : "SIGN IN";
+    const togglePassword =
+        document.getElementById("togglePassword");
 
 
-    /* Change bottom text */
-
-    switchText.textContent = isSignUp
-        ? "Already have a local profile?"
-        : "New to Kansō Table?";
-
-    switchLink.textContent = isSignUp
-        ? "Sign in"
-        : "Create profile";
+    const loginOptions =
+        document.getElementById("loginOptions");
 
 
-    /* Browser autocomplete */
-
-    password.autocomplete = isSignUp
-        ? "new-password"
-        : "current-password";
+    const submitBtn =
+        document.getElementById("submitBtn");
 
 
-    /* Clear old messages */
+    const switchText =
+        document.getElementById("switchText");
 
-    message.textContent = "";
-
-
-    /* Clear passwords when switching */
-
-    password.value = "";
-    confirmPassword.value = "";
-}
+    const switchLink =
+        document.getElementById("switchLink");
 
 
-/* =========================
-   LOGIN <-> SIGNUP
-   COIN TURN ANIMATION
-========================= */
+    const message =
+        document.getElementById("message");
 
-switchLink.addEventListener("click", function (event) {
 
-    event.preventDefault();
+    const forgotLink =
+        document.getElementById("forgotLink");
 
-    if (isSwitchingForm) {
+
+    /* =========================================
+       SAFETY CHECK
+    ========================================= */
+
+    if (
+        !form ||
+        !authCard ||
+        !formTitle ||
+        !formSubtitle ||
+        !username ||
+        !email ||
+        !emailBox ||
+        !password ||
+        !confirmPassword ||
+        !confirmBox ||
+        !togglePassword ||
+        !loginOptions ||
+        !submitBtn ||
+        !switchText ||
+        !switchLink ||
+        !message ||
+        !forgotLink
+    ) {
+
+        console.error(
+            "Kansō login: required HTML elements are missing."
+        );
+
         return;
     }
 
-    isSwitchingForm = true;
+
+    /* =========================================
+       STATE
+    ========================================= */
+
+    let isSignUp = false;
+
+    let isAnimating = false;
 
 
-    /* Reset animation classes */
+    /* =========================================
+       MESSAGE HELPER
+    ========================================= */
 
-    authCard.classList.remove(
-        "coin-turn-out",
-        "coin-turn-in"
-    );
+    function showMessage(
+        text,
+        type = "error"
+    ) {
 
-
-    /* Force browser repaint */
-
-    void authCard.offsetWidth;
-
-
-    /* Start first half */
-
-    authCard.classList.add("coin-turn-out");
+        message.textContent =
+            text;
 
 
-    authCard.addEventListener(
-        "animationend",
-        function turnOutFinished(event) {
+        if (type === "success") {
 
-            if (event.animationName !== "kansoCoinTurnOut") {
+            message.style.color =
+                "#496c4f";
+
+        } else {
+
+            message.style.color =
+                "#8e252e";
+
+        }
+
+    }
+
+
+    function clearMessage() {
+
+        message.textContent =
+            "";
+
+    }
+
+
+    /* =========================================
+       LOGIN MODE
+    ========================================= */
+
+    function showLoginMode() {
+
+        isSignUp =
+            false;
+
+
+        formTitle.textContent =
+            "Welcome back.";
+
+
+        formSubtitle.textContent =
+            "Sign in to continue to your Kansō Table profile.";
+
+
+        emailBox.hidden =
+            true;
+
+        email.required =
+            false;
+
+
+        confirmBox.hidden =
+            true;
+
+        confirmPassword.required =
+            false;
+
+
+        loginOptions.hidden =
+            false;
+
+
+        submitBtn.textContent =
+            "SIGN IN";
+
+
+        switchText.textContent =
+            "New to Kansō Table?";
+
+
+        switchLink.textContent =
+            "Create profile";
+
+
+        password.autocomplete =
+            "current-password";
+
+
+        password.value =
+            "";
+
+        confirmPassword.value =
+            "";
+
+
+        clearMessage();
+
+    }
+
+
+    /* =========================================
+       CREATE PROFILE MODE
+    ========================================= */
+
+    function showSignUpMode() {
+
+        isSignUp =
+            true;
+
+
+        formTitle.textContent =
+            "Create profile.";
+
+
+        formSubtitle.textContent =
+            "Create a local Kansō Table profile in this browser.";
+
+
+        emailBox.hidden =
+            false;
+
+        email.required =
+            true;
+
+
+        confirmBox.hidden =
+            false;
+
+        confirmPassword.required =
+            true;
+
+
+        loginOptions.hidden =
+            true;
+
+
+        submitBtn.textContent =
+            "CREATE PROFILE";
+
+
+        switchText.textContent =
+            "Already have a profile?";
+
+
+        switchLink.textContent =
+            "Sign in";
+
+
+        password.autocomplete =
+            "new-password";
+
+
+        password.value =
+            "";
+
+        confirmPassword.value =
+            "";
+
+
+        clearMessage();
+
+    }
+
+
+    /* =========================================
+       CHANGE FORM WITH COIN ANIMATION
+    ========================================= */
+
+    function changeMode() {
+
+        if (isAnimating) {
+            return;
+        }
+
+
+        isAnimating =
+            true;
+
+
+        authCard.classList.remove(
+            "coin-turn-in",
+            "coin-turn-out"
+        );
+
+
+        /*
+          Force repaint so animation
+          can restart every time.
+        */
+
+        void authCard.offsetWidth;
+
+
+        authCard.classList.add(
+            "coin-turn-out"
+        );
+
+
+        function cardTurnedOut(event) {
+
+            if (
+                event.animationName !==
+                "circleCardOut"
+            ) {
+
                 return;
+
             }
 
 
             authCard.removeEventListener(
                 "animationend",
-                turnOutFinished
+                cardTurnedOut
             );
 
 
-            /* Change form while card is turned */
+            if (isSignUp) {
 
-            updateFormMode();
+                showLoginMode();
+
+            } else {
+
+                showSignUpMode();
+
+            }
 
 
-            authCard.classList.remove("coin-turn-out");
+            authCard.classList.remove(
+                "coin-turn-out"
+            );
+
 
             void authCard.offsetWidth;
 
 
-            /* Turn card back */
+            authCard.classList.add(
+                "coin-turn-in"
+            );
 
-            authCard.classList.add("coin-turn-in");
+
+            function cardTurnedIn(event) {
+
+                if (
+                    event.animationName !==
+                    "circleCardIn"
+                ) {
+
+                    return;
+
+                }
+
+
+                authCard.removeEventListener(
+                    "animationend",
+                    cardTurnedIn
+                );
+
+
+                authCard.classList.remove(
+                    "coin-turn-in"
+                );
+
+
+                isAnimating =
+                    false;
+
+            }
 
 
             authCard.addEventListener(
                 "animationend",
-                function turnInFinished(event) {
-
-                    if (
-                        event.animationName !==
-                        "kansoCoinTurnIn"
-                    ) {
-                        return;
-                    }
-
-
-                    authCard.removeEventListener(
-                        "animationend",
-                        turnInFinished
-                    );
-
-
-                    authCard.classList.remove(
-                        "coin-turn-in"
-                    );
-
-
-                    isSwitchingForm = false;
-                }
+                cardTurnedIn
             );
+
+        }
+
+
+        authCard.addEventListener(
+            "animationend",
+            cardTurnedOut
+        );
+
+    }
+
+
+    /* =========================================
+       SWITCH LOGIN / SIGN UP
+    ========================================= */
+
+    switchLink.addEventListener(
+        "click",
+        changeMode
+    );
+
+
+    /* =========================================
+       PASSWORD SHOW / HIDE
+    ========================================= */
+
+    togglePassword.addEventListener(
+        "click",
+        () => {
+
+            const passwordHidden =
+                password.type ===
+                "password";
+
+
+            if (passwordHidden) {
+
+                password.type =
+                    "text";
+
+                togglePassword.textContent =
+                    "Hide";
+
+                togglePassword.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            } else {
+
+                password.type =
+                    "password";
+
+                togglePassword.textContent =
+                    "Show";
+
+                togglePassword.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+
         }
     );
-});
 
 
-/* =========================
-   SHOW / HIDE PASSWORD
-========================= */
+    /* =========================================
+       FORGOT PASSWORD
+    ========================================= */
 
-togglePassword.addEventListener(
-    "click",
-    function () {
+    forgotLink.addEventListener(
+        "click",
+        () => {
 
-        const isHidden =
-            password.type === "password";
+            showMessage(
+                "Password recovery is unavailable in this browser-only demonstration."
+            );
 
-
-        password.type = isHidden
-            ? "text"
-            : "password";
-
-
-        togglePassword.textContent =
-            isHidden
-                ? "Hide"
-                : "Show";
+        }
+    );
 
 
-        togglePassword.setAttribute(
-            "aria-label",
-            isHidden
-                ? "Hide password"
-                : "Show password"
-        );
-    }
-);
+    /* =========================================
+       VALIDATION
+    ========================================= */
 
-
-/* =========================
-   FORM SUBMIT
-========================= */
-
-form.addEventListener(
-    "submit",
-    function (event) {
-
-        event.preventDefault();
-
+    function validateForm() {
 
         const name =
             username.value.trim();
 
 
-        /* Check display name */
-
         if (!name) {
 
             username.focus();
 
-            setMessage(
+
+            showMessage(
                 "Please enter your display name."
             );
 
-            return;
+
+            return false;
+
         }
 
 
-        /* Password validation */
-
-        if (password.value.length < 6) {
+        if (
+            password.value.length < 6
+        ) {
 
             password.focus();
 
-            setMessage(
-                "Passphrase must be at least 6 characters."
+
+            showMessage(
+                "Passphrase must contain at least 6 characters."
             );
 
-            return;
+
+            return false;
+
         }
 
 
-        /* Extra checks for signup */
-
         if (isSignUp) {
 
+            const emailValue =
+                email.value.trim();
+
+
             if (
-                !email.value.trim() ||
+                !emailValue ||
                 !email.checkValidity()
             ) {
 
                 email.focus();
 
-                setMessage(
+
+                showMessage(
                     "Please enter a valid email address."
                 );
 
-                return;
+
+                return false;
+
             }
 
 
             if (
-                password.value !==
-                confirmPassword.value
+                confirmPassword.value !==
+                password.value
             ) {
 
                 confirmPassword.focus();
 
-                setMessage(
+
+                showMessage(
                     "Passphrases do not match."
                 );
 
-                return;
+
+                return false;
+
             }
+
         }
 
 
-        if (submitBtn.disabled) {
-            return;
-        }
+        return true;
+
+    }
 
 
-        /* Disable button during animation */
+    /* =========================================
+       BUTTON ANIMATION
+    ========================================= */
 
-        submitBtn.disabled = true;
+    function animateSubmitButton(
+        callback
+    ) {
 
-        message.textContent = "";
+        submitBtn.disabled =
+            true;
 
-
-        /* Restart animation */
 
         submitBtn.classList.remove(
             "coin-flip"
         );
 
+
         void submitBtn.offsetWidth;
+
 
         submitBtn.classList.add(
             "coin-flip"
         );
 
 
-        submitBtn.addEventListener(
-            "animationend",
-            function finishAnimation(event) {
+        function finished(event) {
 
-                if (
-                    event.animationName !==
-                    "kansoCoinFlip"
-                ) {
-                    return;
-                }
+            if (
+                event.animationName !==
+                "circleButtonFlip"
+            ) {
 
-
-                submitBtn.classList.remove(
-                    "coin-flip"
-                );
-
-                submitBtn.disabled = false;
-
-
-                /* =========================
-                   SIGN UP
-                ========================= */
-
-                if (isSignUp) {
-
-                    /*
-                    Save only demo profile data.
-
-                    Password is intentionally
-                    NOT stored.
-                    */
-
-                    localStorage.setItem(
-                        "kansoDemoProfile",
-                        JSON.stringify({
-                            name: name,
-                            email: email.value.trim(),
-                            createdAt:
-                                new Date().toISOString()
-                        })
-                    );
-
-
-                    setMessage(
-                        "Local profile created successfully. Your passphrase was not stored.",
-                        "success"
-                    );
-                }
-
-
-                /* =========================
-                   LOGIN
-                ========================= */
-
-                else {
-
-                    const existingProfile =
-                        localStorage.getItem(
-                            "kansoDemoProfile"
-                        );
-
-
-                    if (existingProfile) {
-
-                        setMessage(
-                            "Demo sign-in complete. Welcome back to your table.",
-                            "success"
-                        );
-
-                    } else {
-
-                        setMessage(
-                            "Demo sign-in complete. Create a profile if you want to save local details.",
-                            "success"
-                        );
-                    }
-                }
+                return;
 
             }
+
+
+            submitBtn.removeEventListener(
+                "animationend",
+                finished
+            );
+
+
+            submitBtn.classList.remove(
+                "coin-flip"
+            );
+
+
+            submitBtn.disabled =
+                false;
+
+
+            callback();
+
+        }
+
+
+        submitBtn.addEventListener(
+            "animationend",
+            finished
         );
+
     }
-);
 
 
-/* =========================
-   FORGOT PASSWORD
-========================= */
+    /* =========================================
+       CREATE LOCAL PROFILE
+    ========================================= */
 
-document
-    .getElementById("forgotLink")
-    .addEventListener(
-        "click",
-        function (event) {
+    function createProfile() {
+
+        const profile = {
+
+            name:
+                username.value.trim(),
+
+            email:
+                email.value.trim(),
+
+            createdAt:
+                new Date().toISOString()
+
+        };
+
+
+        /*
+          IMPORTANT:
+
+          Password is deliberately NOT saved.
+        */
+
+        localStorage.setItem(
+            "kansoDemoProfile",
+            JSON.stringify(profile)
+        );
+
+
+        showMessage(
+            "Profile created successfully. Your passphrase was not stored.",
+            "success"
+        );
+
+    }
+
+
+    /* =========================================
+       DEMO LOGIN
+    ========================================= */
+
+    function loginProfile() {
+
+        const savedProfile =
+            localStorage.getItem(
+                "kansoDemoProfile"
+            );
+
+
+        if (savedProfile) {
+
+            try {
+
+                const profile =
+                    JSON.parse(savedProfile);
+
+
+                showMessage(
+                    `Welcome back${profile.name ? ", " + profile.name : ""}.`,
+                    "success"
+                );
+
+            } catch {
+
+                showMessage(
+                    "Welcome back to Kansō Table.",
+                    "success"
+                );
+
+            }
+
+        } else {
+
+            showMessage(
+                "Demo sign-in complete. Create a profile to save local information.",
+                "success"
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       SUBMIT
+    ========================================= */
+
+    form.addEventListener(
+        "submit",
+        (event) => {
 
             event.preventDefault();
 
 
-            setMessage(
-                "Password recovery is unavailable because this is a browser-only demonstration."
+            clearMessage();
+
+
+            if (!validateForm()) {
+
+                return;
+
+            }
+
+
+            animateSubmitButton(
+                () => {
+
+                    if (isSignUp) {
+
+                        createProfile();
+
+                    } else {
+
+                        loginProfile();
+
+                    }
+
+                }
             );
+
         }
     );
+
+
+    /* =========================================
+       INITIAL MODE
+    ========================================= */
+
+    showLoginMode();
+
+});
