@@ -6,12 +6,14 @@
   <meta name="description" content="Sign in to the Kansō Table local demonstration profile.">
   <title>Login · Kansō Table</title>
   <link rel="icon" href="assets/images/logo-mark.svg" type="image/svg+xml">
+
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/pages.css">
   <link rel="stylesheet" href="css/responsive.css">
+
   <script defer src="js/config.js"></script>
   <script defer src="js/data/menu-data.js"></script>
   <script defer src="js/data/reviews-data.js"></script>
@@ -24,99 +26,144 @@
   <script defer src="js/modules/navigation.js"></script>
   <script defer src="js/modules/favorites.js"></script>
   <script defer src="js/modules/cart.js"></script>
-  <script defer src="js/modules/login.js"></script>
   <script defer src="js/app.js"></script>
+  
+  <link rel="stylesheet" href="css/login-circle.css">
+
+
 </head>
-<body data-page="login">
-<main id="main" class="login-page">
-  <section class="login-shell" aria-labelledby="loginTitle">
-    <div class="login-visual" aria-hidden="true">
-      <div class="login-visual__overlay"></div>
-      <div class="login-visual__content">
-        <span class="section-kicker">Kansō Table · 間</span>
-        <p class="login-quote">A quiet table.<br>A memorable meal.</p>
-        <p>Save favorites, revisit dishes, keep local demo orders and manage reservation history in one browser profile.</p>
-      </div>
-    </div>
 
-    <div class="login-panel">
-      <div class="login-panel__inner">
-        <a class="brand login-brand" href="index.html" aria-label="Kansō Table home"><span class="brand__mark">間</span><span>Kansō Table</span></a>
-        <span class="badge">Local account demonstration</span>
-        <h1 id="loginTitle">Welcome to your table.</h1>
-        <p class="muted">This static project does not provide secure authentication. Use demonstration details only; passwords are never stored or sent anywhere.</p>
+<body data-page="login" class="kanso-login-body">
+  <main id="main" class="kanso-auth-page">
+    <section class="kanso-auth-shell" aria-labelledby="formTitle">
 
-        <div class="auth-tabs" role="tablist" aria-label="Account options">
-          <button class="auth-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="signinPanel" id="signinTab" data-auth-tab="signin">Sign in</button>
-          <button class="auth-tab" type="button" role="tab" aria-selected="false" aria-controls="registerPanel" id="registerTab" data-auth-tab="register">Create profile</button>
+      <a class="kanso-back-home" href="index.html" aria-label="Back to Kansō Table home">
+        <span aria-hidden="true">←</span>
+        Home
+      </a>
+
+      <div class="kanso-auth-intro">
+        <a class="kanso-auth-brand" href="index.html" aria-label="Kansō Table home">
+          <span class="kanso-auth-mark">間</span>
+          <span>
+            <strong>Kansō Table</strong>
+            <small>Hyderabad · Contemporary dining</small>
+          </span>
+        </a>
+
+        <p class="kanso-eyebrow">Your table, remembered</p>
+        <h2>Quiet hospitality,<br>now a little more personal.</h2>
+        <p class="kanso-auth-copy">
+          Sign in to keep your favorite dishes, profile preferences,
+          demo reservations and local order activity together in this browser.
+        </p>
+
+        <div class="kanso-auth-points" aria-label="Profile benefits">
+          <span>Saved favorites</span>
+          <span>Local order history</span>
+          <span>Dining preferences</span>
         </div>
-
-        <section id="signinPanel" role="tabpanel" aria-labelledby="signinTab" data-auth-panel="signin">
-          <form class="auth-form" data-login-form novalidate>
-            <div class="field">
-              <label for="loginEmail">Email address</label>
-              <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="demo@example.com" required>
-              <small class="field-error" data-error-for="email"></small>
-            </div>
-            <div class="field">
-              <label for="loginPassphrase">Demo passphrase</label>
-              <div class="password-field">
-                <input id="loginPassphrase" name="passphrase" type="password" autocomplete="off" placeholder="Enter any 6+ characters" minlength="6" required aria-describedby="passphraseHelp">
-                <button class="password-toggle" type="button" data-password-toggle aria-label="Show demo passphrase">Show</button>
-              </div>
-              <small id="passphraseHelp" class="muted">Do not use a real password. This value is validated only in the page and is never saved.</small>
-              <small class="field-error" data-error-for="passphrase"></small>
-            </div>
-            <div class="auth-row">
-              <label class="check"><input type="checkbox" name="remember" checked> Keep demo profile active in this browser</label>
-              <button class="text-button" type="button" data-demo-fill>Use demo details</button>
-            </div>
-            <button class="btn btn--primary btn--wide" type="submit">Sign in to demo profile</button>
-          </form>
-        </section>
-
-        <section id="registerPanel" role="tabpanel" aria-labelledby="registerTab" data-auth-panel="register" hidden>
-          <form class="auth-form" data-register-form novalidate>
-            <div class="form-grid cols-2">
-              <div class="field">
-                <label for="registerName">Display name</label>
-                <input id="registerName" name="name" autocomplete="name" placeholder="Your name" required maxlength="60">
-                <small class="field-error" data-error-for="name"></small>
-              </div>
-              <div class="field">
-                <label for="registerPhone">Phone number</label>
-                <input id="registerPhone" name="phone" inputmode="numeric" autocomplete="tel" placeholder="9876543210" required maxlength="10">
-                <small class="field-error" data-error-for="phone"></small>
-              </div>
-            </div>
-            <div class="field">
-              <label for="registerEmail">Email address</label>
-              <input id="registerEmail" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
-              <small class="field-error" data-error-for="email"></small>
-            </div>
-            <div class="field">
-              <label for="registerPassphrase">Demo passphrase</label>
-              <div class="password-field">
-                <input id="registerPassphrase" name="passphrase" type="password" autocomplete="off" placeholder="Any 6+ demo characters" minlength="6" required>
-                <button class="password-toggle" type="button" data-password-toggle aria-label="Show demo passphrase">Show</button>
-              </div>
-              <small class="muted">For demonstration only. The passphrase is discarded immediately after validation.</small>
-              <small class="field-error" data-error-for="passphrase"></small>
-            </div>
-            <label class="check"><input type="checkbox" name="terms" required> I understand this is a local demonstration profile, not secure authentication.</label>
-            <small class="field-error" data-error-for="terms"></small>
-            <button class="btn btn--primary btn--wide" type="submit">Create local demo profile</button>
-          </form>
-        </section>
-
-        <div class="login-security-note">
-          <strong>Privacy note</strong>
-          <p>Only non-sensitive demo profile details may be stored in your browser using localStorage. Nothing is transmitted to a server or shared across devices.</p>
-        </div>
-        <p class="login-back"><a href="index.html">← Continue as guest</a></p>
       </div>
-    </div>
-  </section>
-</main>
+
+      <div class="kanso-auth-card-wrap">
+        <div class="kanso-auth-card" id="authCard">
+          <div class="kanso-card-topline">
+            <span class="kanso-chip">Local profile demo</span>
+            <span class="kanso-japanese" aria-hidden="true">簡素</span>
+          </div>
+
+          <h1 id="formTitle">Welcome back.</h1>
+          <p class="kanso-subtitle" id="formSubtitle">
+            Sign in to continue to your Kansō Table profile.
+          </p>
+
+          <form id="accountForm" novalidate>
+            <div class="kanso-input-box">
+              <span class="kanso-input-icon" aria-hidden="true">◎</span>
+              <label class="sr-only" for="username">Display name</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Display name"
+                autocomplete="username"
+                required
+              >
+            </div>
+
+            <div class="kanso-input-box" id="emailBox" hidden>
+              <span class="kanso-input-icon" aria-hidden="true">✉</span>
+              <label class="sr-only" for="email">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email address"
+                autocomplete="email"
+              >
+            </div>
+
+            <div class="kanso-input-box kanso-password-box">
+              <span class="kanso-input-icon" aria-hidden="true">◇</span>
+              <label class="sr-only" for="password">Passphrase</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Passphrase"
+                autocomplete="current-password"
+                minlength="6"
+                required
+              >
+              <button
+                type="button"
+                class="kanso-show-password"
+                id="togglePassword"
+                aria-label="Show password"
+              >
+                Show
+              </button>
+            </div>
+
+            <div class="kanso-input-box" id="confirmBox" hidden>
+              <span class="kanso-input-icon" aria-hidden="true">◇</span>
+              <label class="sr-only" for="confirmPassword">Confirm passphrase</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm passphrase"
+                autocomplete="new-password"
+              >
+            </div>
+
+            <div class="kanso-options" id="loginOptions">
+              <label class="kanso-remember">
+                <input type="checkbox" id="remember">
+                <span>Remember this browser</span>
+              </label>
+              <a href="#" id="forgotLink">Forgot passphrase?</a>
+            </div>
+
+            <button type="submit" class="kanso-signin-btn" id="submitBtn">
+              SIGN IN
+            </button>
+
+            <p class="kanso-message" id="message" role="status" aria-live="polite"></p>
+          </form>
+
+          <p class="kanso-switch">
+            <span id="switchText">New to Kansō Table?</span>
+            <a href="#" id="switchLink">Create profile</a>
+          </p>
+
+          <p class="kanso-demo-note">
+            Demonstration only. No real authentication server is connected and no password is stored or sent.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script defer src="js/modules/login-circle.js"></script>
 </body>
 </html>
