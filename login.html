@@ -3,390 +3,464 @@
 
 <head>
   <meta charset="utf-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta
     name="description"
-    content="Kansō Table local profile login demonstration."
+    content="Sign in to your Kansō Table profile or create a new local demo account."
   >
+  <title>Sign in · Kansō Table</title>
 
-  <title>Login · Kansō Table</title>
-
-  <link
-    rel="icon"
-    href="assets/images/logo-mark.svg"
-    type="image/svg+xml"
-  >
-
-
-  <!-- ============================= -->
-  <!-- EXISTING APPLICATION CSS      -->
-  <!-- ============================= -->
+  <link rel="icon" href="assets/images/logo-mark.svg" type="image/svg+xml">
 
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
-  <link rel="stylesheet" href="css/responsive.css">
 
-
-  <!-- ============================= -->
-  <!-- LOGIN CSS - KEEP THIS LAST     -->
-  <!-- ============================= -->
-
-  <link rel="stylesheet" href="css/login-circle.css">
-
-
-  <!-- ============================= -->
-  <!-- EXISTING APPLICATION JS       -->
-  <!-- ============================= -->
+  <!-- Login styles last so they own the page -->
+  <link rel="stylesheet" href="css/login.css">
 
   <script defer src="js/config.js"></script>
-  <script defer src="js/data/menu-data.js"></script>
-  <script defer src="js/data/reviews-data.js"></script>
-  <script defer src="js/data/offers-data.js"></script>
-
   <script defer src="js/utils/storage.js"></script>
-  <script defer src="js/utils/formatting.js"></script>
   <script defer src="js/utils/validation.js"></script>
-  <script defer src="js/utils/notifications.js"></script>
-
   <script defer src="js/modules/theme.js"></script>
-  <script defer src="js/modules/favorites.js"></script>
-  <script defer src="js/modules/cart.js"></script>
-
-
-  <!-- ============================= -->
-  <!-- LOGIN JS                       -->
-  <!-- ============================= -->
-
-  <script defer src="js/modules/login-circle.js"></script>
-
+  <script defer src="js/modules/login.js"></script>
 </head>
-
 
 <body data-page="login">
 
-  <main class="circle-login-page">
+  <a class="skip-link" href="#authMain">Skip to sign in</a>
 
-    <!-- Back to home -->
+  <main class="login-page" id="authMain">
 
-    <a
-      href="index.html"
-      class="circle-login-home"
-      aria-label="Return to Kansō Table home"
-    >
-      <span aria-hidden="true">←</span>
-      <span>Back to home</span>
-    </a>
+    <!-- =========================================================
+         EDITORIAL VISUAL PANEL
+    ========================================================== -->
 
+    <section class="login-visual" aria-label="About Kansō Table">
 
-    <!-- Main circular card -->
+      <img
+        class="login-visual__image"
+        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+        alt=""
+        aria-hidden="true"
+        onerror="this.src='assets/images/fallback-space.svg'"
+      >
 
-    <section
-      class="circle-login-card"
-      id="authCard"
-      aria-labelledby="formTitle"
-    >
+      <div class="login-visual__wash" aria-hidden="true"></div>
+      <span class="login-visual__kanji" aria-hidden="true">間</span>
 
-      <!-- Top brand -->
+      <div class="login-visual__top">
 
-      <div class="circle-login-brand">
-
-        <div class="circle-login-logo">
-          間
-        </div>
-
-        <div class="circle-login-brand-text">
-
-          <strong>
-            Kansō Table
-          </strong>
-
-          <small>
-            Hyderabad · Contemporary dining
-          </small>
-
-        </div>
+        <a class="login-brand" href="index.html">
+          <span class="login-brand__mark" aria-hidden="true">間</span>
+          <span class="login-brand__text">
+            <strong>Kansō Table</strong>
+            <small>Hyderabad · Contemporary dining</small>
+          </span>
+        </a>
 
       </div>
 
+      <div class="login-visual__content">
 
-      <!-- Demo label -->
+        <span class="login-kicker">Seasonal plates · Quiet craft</span>
 
-      <div class="circle-login-badge-row">
+        <p class="login-quote">
+          Quiet craft.<br>
+          Bold memory.
+        </p>
 
-        <span class="circle-login-badge">
-          Local profile demo
-        </span>
+        <p class="login-visual__copy">
+          Sign in to keep your favourites, reservations and demo rewards
+          in one considered place.
+        </p>
 
-        <span
-          class="circle-login-japanese"
-          aria-hidden="true"
-        >
-          簡素
-        </span>
+        <dl class="login-facts">
+          <div>
+            <dt>Lunch</dt>
+            <dd>12:00–15:30</dd>
+          </div>
+          <div>
+            <dt>Dinner</dt>
+            <dd>18:30–22:30</dd>
+          </div>
+          <div>
+            <dt>Member tiers</dt>
+            <dd>Hinoki · Sakura · Kintsugi</dd>
+          </div>
+        </dl>
 
       </div>
 
-
-      <!-- Title -->
-
-      <h1
-        class="circle-login-title"
-        id="formTitle"
-      >
-        Welcome back.
-      </h1>
+    </section>
 
 
-      <p
-        class="circle-login-subtitle"
-        id="formSubtitle"
-      >
-        Sign in to continue to your Kansō Table profile.
-      </p>
+    <!-- =========================================================
+         FORM PANEL
+    ========================================================== -->
 
+    <section class="login-panel">
 
-      <!-- ============================= -->
-      <!-- FORM                           -->
-      <!-- ============================= -->
+      <div class="login-panel__top">
 
-      <form
-        id="accountForm"
-        class="circle-login-form"
-        novalidate
-      >
+        <a class="login-panel__brand" href="index.html">
+          <span class="login-brand__mark" aria-hidden="true">間</span>
+          <strong>Kansō Table</strong>
+        </a>
 
-
-        <!-- Display name -->
-
-        <div class="circle-field">
-
-          <span
-            class="circle-field-icon"
-            aria-hidden="true"
-          >
-            ◎
-          </span>
-
-          <label
-            class="circle-sr-only"
-            for="username"
-          >
-            Display name
-          </label>
-
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Display name"
-            autocomplete="username"
-            required
-          >
-
-        </div>
-
-
-        <!-- Email - signup only -->
-
-        <div
-          class="circle-field"
-          id="emailBox"
-          hidden
-        >
-
-          <span
-            class="circle-field-icon"
-            aria-hidden="true"
-          >
-            ✉
-          </span>
-
-          <label
-            class="circle-sr-only"
-            for="email"
-          >
-            Email address
-          </label>
-
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email address"
-            autocomplete="email"
-          >
-
-        </div>
-
-
-        <!-- Password -->
-
-        <div class="circle-field">
-
-          <span
-            class="circle-field-icon"
-            aria-hidden="true"
-          >
-            ◇
-          </span>
-
-          <label
-            class="circle-sr-only"
-            for="password"
-          >
-            Passphrase
-          </label>
-
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Passphrase"
-            autocomplete="current-password"
-            minlength="6"
-            required
-          >
+        <div class="login-tools">
 
           <button
             type="button"
-            id="togglePassword"
-            class="circle-password-toggle"
-            aria-label="Show password"
+            class="login-icon-btn"
+            data-theme-toggle
+            aria-label="Switch to dark theme"
           >
-            Show
+            <svg class="theme-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1Z"/>
+            </svg>
+            <svg class="theme-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+            </svg>
+          </button>
+
+          <a class="login-back" href="index.html">
+            <span aria-hidden="true">←</span>
+            Back to home
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="login-card">
+
+        <!-- Already signed in -->
+
+        <div class="login-signedin" id="signedInBanner" hidden>
+
+          <span class="login-signedin__dot" aria-hidden="true"></span>
+
+          <p>
+            Signed in as <strong id="signedInName">Guest</strong>
+          </p>
+
+          <div class="login-signedin__actions">
+            <a class="login-link" href="profile.html">Open profile</a>
+            <button type="button" class="login-link" id="signOutBtn">
+              Sign out
+            </button>
+          </div>
+
+        </div>
+
+
+        <!-- Heading -->
+
+        <span class="login-eyebrow">
+          <span class="login-eyebrow__line" aria-hidden="true"></span>
+          Account access
+        </span>
+
+        <h1 class="login-title" id="formTitle">
+          Welcome back.
+        </h1>
+
+        <p class="login-subtitle" id="formSubtitle">
+          Sign in to continue to your Kansō Table profile.
+        </p>
+
+
+        <!-- Mode tabs -->
+
+        <div class="login-tabs" role="tablist" aria-label="Account access mode">
+
+          <button
+            type="button"
+            class="login-tab is-active"
+            id="tabSignin"
+            role="tab"
+            aria-selected="true"
+            aria-controls="authFormPanel"
+          >
+            Sign in
+          </button>
+
+          <button
+            type="button"
+            class="login-tab"
+            id="tabSignup"
+            role="tab"
+            aria-selected="false"
+            aria-controls="authFormPanel"
+            tabindex="-1"
+          >
+            Create account
           </button>
 
         </div>
 
 
-        <!-- Confirm password - signup only -->
+        <!-- =====================================================
+             FORM
+        ====================================================== -->
 
-        <div
-          class="circle-field"
-          id="confirmBox"
-          hidden
+        <form
+          id="accountForm"
+          class="login-form"
+          role="tabpanel"
+          aria-labelledby="tabSignin"
+          novalidate
         >
 
-          <span
-            class="circle-field-icon"
-            aria-hidden="true"
-          >
-            ◇
-          </span>
+          <!-- Full name (sign up only) -->
 
-          <label
-            class="circle-sr-only"
-            for="confirmPassword"
-          >
-            Confirm passphrase
-          </label>
+          <div class="field login-field" id="nameField" hidden>
 
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="Confirm passphrase"
-            autocomplete="new-password"
-          >
+            <label for="username">Full name</label>
 
-        </div>
+            <div class="login-input">
 
+              <span class="login-input__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="3.5"/>
+                  <path d="M5 20a7 7 0 0 1 14 0"/>
+                </svg>
+              </span>
 
-        <!-- Login options -->
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Your name"
+                autocomplete="name"
+              >
 
-        <div
-          class="circle-login-options"
-          id="loginOptions"
-        >
+            </div>
 
-          <label class="circle-remember">
+            <span class="field-error"></span>
 
-            <input
-              type="checkbox"
-              id="remember"
-            >
-
-            <span>
-              Remember browser
-            </span>
-
-          </label>
+          </div>
 
 
-          <button
-            type="button"
-            class="circle-text-button"
-            id="forgotLink"
-          >
-            Forgot passphrase?
+          <!-- Email -->
+
+          <div class="field login-field">
+
+            <label for="email">Email address</label>
+
+            <div class="login-input">
+
+              <span class="login-input__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="5" width="18" height="14" rx="3"/>
+                  <path d="m4 7 8 6 8-6"/>
+                </svg>
+              </span>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+              >
+
+            </div>
+
+            <span class="field-error"></span>
+
+          </div>
+
+
+          <!-- Password -->
+
+          <div class="field login-field">
+
+            <div class="login-label-row">
+
+              <label for="password">Password</label>
+
+              <button
+                type="button"
+                class="login-link"
+                id="forgotLink"
+              >
+                Forgot password?
+              </button>
+
+            </div>
+
+            <div class="login-input">
+
+              <span class="login-input__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="10" width="16" height="10" rx="3"/>
+                  <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                </svg>
+              </span>
+
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="At least 6 characters"
+                autocomplete="current-password"
+                minlength="6"
+              >
+
+              <button
+                type="button"
+                id="togglePassword"
+                class="login-reveal"
+                aria-label="Show password"
+                aria-pressed="false"
+              >
+                <svg class="icon-eye" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 3l18 18"/>
+                  <path d="M10.6 6.1A9.6 9.6 0 0 1 12 6c6 0 9.5 6 9.5 6a17.6 17.6 0 0 1-3.2 3.8M6.5 6.9C4 8.6 2.5 12 2.5 12s3.5 6 9.5 6a9.4 9.4 0 0 0 4.4-1.1M9.9 9.9a3 3 0 0 0 4.2 4.2"/>
+                </svg>
+              </button>
+
+            </div>
+
+            <span class="field-error"></span>
+
+          </div>
+
+
+          <!-- Confirm password (sign up only) -->
+
+          <div class="field login-field" id="confirmField" hidden>
+
+            <label for="confirmPassword">Confirm password</label>
+
+            <div class="login-input">
+
+              <span class="login-input__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="10" width="16" height="10" rx="3"/>
+                  <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                  <path d="m9.5 15 1.8 1.8 3.4-3.4"/>
+                </svg>
+              </span>
+
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Repeat your password"
+                autocomplete="new-password"
+              >
+
+              <button
+                type="button"
+                id="toggleConfirm"
+                class="login-reveal"
+                aria-label="Show confirm password"
+                aria-pressed="false"
+              >
+                <svg class="icon-eye" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg class="icon-eye-off" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 3l18 18"/>
+                  <path d="M10.6 6.1A9.6 9.6 0 0 1 12 6c6 0 9.5 6 9.5 6a17.6 17.6 0 0 1-3.2 3.8M6.5 6.9C4 8.6 2.5 12 2.5 12s3.5 6 9.5 6a9.4 9.4 0 0 0 4.4-1.1M9.9 9.9a3 3 0 0 0 4.2 4.2"/>
+                </svg>
+              </button>
+
+            </div>
+
+            <span class="field-error"></span>
+
+          </div>
+
+
+          <!-- Remember -->
+
+          <div class="login-options" id="loginOptions">
+
+            <label class="login-check">
+              <input type="checkbox" id="remember" checked>
+              <span>Remember this device</span>
+            </label>
+
+            <span class="login-options__note">Demo preference only</span>
+
+          </div>
+
+
+          <!-- Submit -->
+
+          <button type="submit" class="login-submit" id="submitBtn">
+
+            <span id="submitLabel">Sign in</span>
+
+            <svg class="login-submit__arrow" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 12h15"/>
+              <path d="m13 6 6 6-6 6"/>
+            </svg>
+
+          </button>
+
+
+          <p
+            class="login-message"
+            id="message"
+            role="status"
+            aria-live="polite"
+          ></p>
+
+        </form>
+
+
+        <!-- Demo helper -->
+
+        <div class="login-demo">
+
+          <div class="login-demo__text">
+            <strong>Just looking around?</strong>
+            <span>Fill a sample account and explore the demo.</span>
+          </div>
+
+          <button type="button" class="login-demo__btn" id="demoFill">
+            Fill demo details
           </button>
 
         </div>
 
 
-        <!-- Submit -->
+        <!-- Privacy note -->
 
-        <button
-          type="submit"
-          class="circle-login-submit"
-          id="submitBtn"
-        >
-          SIGN IN
-        </button>
-
-
-        <!-- Message -->
-
-        <p
-          class="circle-login-message"
-          id="message"
-          role="status"
-          aria-live="polite"
-        ></p>
-
-      </form>
-
-
-      <!-- Change mode -->
-
-      <div class="circle-login-switch">
-
-        <span id="switchText">
-          New to Kansō Table?
-        </span>
-
-        <button
-          type="button"
-          id="switchLink"
-          class="circle-text-button circle-switch-button"
-        >
-          Create profile
-        </button>
+        <p class="login-note">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3l7 3v5c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10V6l7-3Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          <span>
+            Browser-only demonstration. Your name and email stay on this
+            device, and passwords are never stored.
+          </span>
+        </p>
 
       </div>
 
 
-      <!-- Demo note -->
-
-      <p class="circle-login-demo-note">
-        Browser-only demonstration. Your passphrase is
-        never stored or sent.
+      <p class="login-panel__foot">
+        © <span id="loginYear">2026</span> Kansō Table ·
+        <a href="policies.html">Privacy &amp; terms</a>
       </p>
 
     </section>
 
   </main>
-
-
-  <script defer src="js/app.js"></script>
 
 </body>
 
